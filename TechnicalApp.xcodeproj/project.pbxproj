@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D434D3A1486C88800825512 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D434D381486C88800825512 /* SettingViewController.m */; };
+		5D434D3B1486C88800825512 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D434D391486C88800825512 /* SettingViewController.xib */; };
 		5D67DD0414757C06008E84F7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D67DD0314757C06008E84F7 /* UIKit.framework */; };
 		5D67DD0614757C06008E84F7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D67DD0514757C06008E84F7 /* Foundation.framework */; };
 		5D67DD0814757C06008E84F7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D67DD0714757C06008E84F7 /* CoreGraphics.framework */; };
@@ -40,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D434D371486C88800825512 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		5D434D381486C88800825512 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		5D434D391486C88800825512 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		5D67DCFF14757C06008E84F7 /* TechnicalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TechnicalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D67DD0314757C06008E84F7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5D67DD0514757C06008E84F7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,9 +102,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D434D3D1486C89200825512 /* SettingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5D434D371486C88800825512 /* SettingViewController.h */,
+				5D434D381486C88800825512 /* SettingViewController.m */,
+				5D434D391486C88800825512 /* SettingViewController.xib */,
+			);
+			name = SettingViewController;
+			sourceTree = "<group>";
+		};
 		5D67DCF414757C06008E84F7 = {
 			isa = PBXGroup;
 			children = (
+				5D434D3D1486C89200825512 /* SettingViewController */,
 				5DF106DE14812EBC00F04A57 /* XMLReader */,
 				5DF106D714812B7C00F04A57 /* ModalController.m */,
 				5DF106D814812B7C00F04A57 /* ModalController.h */,
@@ -298,6 +314,7 @@
 				5D67DD441475873B008E84F7 /* Login.png in Resources */,
 				5D67DD46147587A2008E84F7 /* 2.png in Resources */,
 				5DF106E31481333300F04A57 /* MemberAreaViewController.xib in Resources */,
+				5D434D3B1486C88800825512 /* SettingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +356,7 @@
 				5DF106D914812B7C00F04A57 /* ModalController.m in Sources */,
 				5DF106DD14812EB400F04A57 /* XMLReader.m in Sources */,
 				5DF106E21481333300F04A57 /* MemberAreaViewController.m in Sources */,
+				5D434D3A1486C88800825512 /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

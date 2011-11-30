@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ModalController.h"
+#import "MBProgressHUD.h"
+#import "Constant.h"
+#import "XMLReader.h"
+#import "SettingViewController.h"
 
-@interface MemberAreaViewController : UIViewController
+@interface MemberAreaViewController : UIViewController<ModalDelegate>
 {
-    
+    ModalController *modal;
     IBOutlet UITableView *tableViewMem;
     NSMutableArray *arrayElement;
 }

@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+
+
 @implementation AppDelegate
 
 @synthesize window = window;
@@ -23,13 +25,24 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    LoginViewController *login=[[LoginViewController alloc]init];
-    navigation=[[UINavigationController alloc]initWithRootViewController:login];
+    
+    if(![ModalController    getContforKey:USERNAME])
+    {
+        LoginViewController *login=[[LoginViewController alloc]init];
+        navigation=[[UINavigationController alloc]initWithRootViewController:login];
+    }
+    else
+    {
+        MemberAreaViewController *MemberAreaController=[[MemberAreaViewController alloc]init];
+        navigation=[[UINavigationController alloc]initWithRootViewController:MemberAreaController];
+        
+    }
     [self.window addSubview:navigation.view];
-   
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

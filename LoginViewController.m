@@ -34,6 +34,7 @@
 
 - (void)viewDidLoad
 {
+    
     //txtfld = [[UITextField alloc]init];
     [super viewDidLoad];
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
@@ -172,6 +173,7 @@ heightForFooterInSection:(NSInteger)section
     if([[_xmlDictionaryData objectForKey:@"userfound"] isEqualToString:@"yes"])
     {
         MemberAreaViewController *memberController = [[MemberAreaViewController alloc] init];
+        [ModalController saveTheContent:[fieldUser text] withKey:USERNAME];
         [self.navigationController pushViewController:memberController animated:YES];
         
     }

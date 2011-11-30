@@ -9,3 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define URLLOGIN @"http://www.thetechnicaltraders.com/memberships/WebServices/member_avi.php?user=%@&pass=%@"
+#define URLSUB @"http://www.thetechnicaltraders.com/memberships/WebServices/user_subscription.php?user=%@"
+
+#define USERNAME @"username"
+NSString *stringUser;
