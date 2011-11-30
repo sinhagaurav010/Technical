@@ -107,6 +107,8 @@ heightForFooterInSection:(NSInteger)section
 
 - (void)viewDidLoad
 {
+    [self.navigationItem setTitle:TITLESETTING];
+
     tableSetting.backgroundView = nil;
     tableSetting.backgroundColor = [UIColor clearColor];
     

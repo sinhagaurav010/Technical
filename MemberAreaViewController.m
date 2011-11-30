@@ -75,6 +75,9 @@
 
 - (void)viewDidLoad
 {
+    
+    [self.navigationItem setTitle:TITLEMEMBERAREA];
+    
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
 //    UIButton *infoButton = [[UIButton buttonWithType:UIButtonTypeInfoLight]retain];

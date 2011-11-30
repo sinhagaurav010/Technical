@@ -15,4 +15,4 @@
 NSString *stringUser;
 
 #define TITLESETTING @"Settings"
-#define TITLEMEMBERAREA @""
+#define TITLEMEMBERAREA @"Members Area"
