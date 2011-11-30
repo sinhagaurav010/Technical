@@ -10,6 +10,7 @@
 
 @interface MemberAreaViewController : UIViewController
 {
+    
     IBOutlet UITableView *tableViewMem;
     NSMutableArray *arrayElement;
 }
