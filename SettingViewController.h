@@ -13,6 +13,7 @@
 @interface SettingViewController : UIViewController
 {
     NSMutableArray *arrayElment;
+    NSInteger checkedItem;
     IBOutlet UITableView *tableSetting;
 }
 -(IBAction)logOut:(id)sender;

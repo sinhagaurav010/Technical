@@ -13,3 +13,6 @@
 
 #define USERNAME @"username"
 NSString *stringUser;
+
+#define TITLESETTING @"Settings"
+#define TITLEMEMBERAREA @""

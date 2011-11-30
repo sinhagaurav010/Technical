@@ -68,7 +68,13 @@
     }
     cell.textLabel.text = [arrayElment objectAtIndex:indexPath.row];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
-    cell.accessoryType = 1;
+    
+    if(checkedItem == indexPath.row)
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    else
+        cell.accessoryType = UITableViewCellAccessoryNone;
+
+    //cell.accessoryType = 1;
     
 	return cell;
 }
@@ -76,7 +82,25 @@
 heightForFooterInSection:(NSInteger)section 
 {
     return 0;
+    
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    checkedItem = indexPath.row;
+    [tableSetting reloadData];
+	// Recover the cell and key
+//	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//	NSString *key = cell.textLabel.text;
+//	
+//	// Created an inverted value and store it
+//	BOOL isChecked = !([[self.stateDictionary objectForKey:key] boolValue]);
+//	NSNumber *checked = [NSNumber numberWithBool:isChecked];
+//	[self.stateDictionary setObject:checked forKey:key];
+//	
+//	// Update the cell accessory checkmark
+//	cell.accessoryType = isChecked ? UITableViewCellAccessoryCheckmark :  UITableViewCellAccessoryNone;
+}
+
 
 
 #pragma mark - View lifecycle
