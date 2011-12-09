@@ -18,5 +18,6 @@
     ModalController *modal;
     IBOutlet UITableView *tableViewMem;
     NSMutableArray *arrayElement;
+    NSDictionary *_xmlDictionaryData ;
 }
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D1B5D871492B5880072C295 /* SubDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1B5D851492B5880072C295 /* SubDetailViewController.m */; };
+		5D1B5D881492B5880072C295 /* SubDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D1B5D861492B5880072C295 /* SubDetailViewController.xib */; };
 		5D434D3A1486C88800825512 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D434D381486C88800825512 /* SettingViewController.m */; };
 		5D434D3B1486C88800825512 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D434D391486C88800825512 /* SettingViewController.xib */; };
 		5D67DD0414757C06008E84F7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D67DD0314757C06008E84F7 /* UIKit.framework */; };
@@ -42,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D1B5D841492B5880072C295 /* SubDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubDetailViewController.h; path = /Users/preetdhillon/Desktop/projectsSaurav/TechnicalApp/SubDetailViewController.h; sourceTree = "<absolute>"; };
+		5D1B5D851492B5880072C295 /* SubDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubDetailViewController.m; path = /Users/preetdhillon/Desktop/projectsSaurav/TechnicalApp/SubDetailViewController.m; sourceTree = "<absolute>"; };
+		5D1B5D861492B5880072C295 /* SubDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubDetailViewController.xib; path = /Users/preetdhillon/Desktop/projectsSaurav/TechnicalApp/SubDetailViewController.xib; sourceTree = "<absolute>"; };
 		5D434D371486C88800825512 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		5D434D381486C88800825512 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		5D434D391486C88800825512 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
@@ -102,6 +107,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D1B5D8A1492B5930072C295 /* SubDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5D1B5D841492B5880072C295 /* SubDetailViewController.h */,
+				5D1B5D851492B5880072C295 /* SubDetailViewController.m */,
+				5D1B5D861492B5880072C295 /* SubDetailViewController.xib */,
+			);
+			name = SubDetailViewController;
+			sourceTree = "<group>";
+		};
 		5D434D3D1486C89200825512 /* SettingViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +130,7 @@
 		5D67DCF414757C06008E84F7 = {
 			isa = PBXGroup;
 			children = (
+				5D1B5D8A1492B5930072C295 /* SubDetailViewController */,
 				5D434D3D1486C89200825512 /* SettingViewController */,
 				5DF106DE14812EBC00F04A57 /* XMLReader */,
 				5DF106D714812B7C00F04A57 /* ModalController.m */,
@@ -315,6 +331,7 @@
 				5D67DD46147587A2008E84F7 /* 2.png in Resources */,
 				5DF106E31481333300F04A57 /* MemberAreaViewController.xib in Resources */,
 				5D434D3B1486C88800825512 /* SettingViewController.xib in Resources */,
+				5D1B5D881492B5880072C295 /* SubDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +374,7 @@
 				5DF106DD14812EB400F04A57 /* XMLReader.m in Sources */,
 				5DF106E21481333300F04A57 /* MemberAreaViewController.m in Sources */,
 				5D434D3A1486C88800825512 /* SettingViewController.m in Sources */,
+				5D1B5D871492B5880072C295 /* SubDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
