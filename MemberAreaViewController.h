@@ -12,12 +12,14 @@
 #import "Constant.h"
 #import "XMLReader.h"
 #import "SettingViewController.h"
+#import "SubDetailViewController.h"
 
 @interface MemberAreaViewController : UIViewController<ModalDelegate>
 {
     ModalController *modal;
     IBOutlet UITableView *tableViewMem;
     NSMutableArray *arrayElement;
+    NSMutableArray *subArry;
     NSDictionary *_xmlDictionaryData ;
 }
 @end

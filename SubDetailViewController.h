@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constant.h"
+#import "PostDetailViewController.h"
 
 @interface SubDetailViewController : UIViewController
 {
         IBOutlet UITableView *tableSub;
 }
+@property(retain)NSMutableDictionary *dictDetail;
+@property(retain)NSString *stringTitle;
 @end

@@ -141,6 +141,8 @@
 {
     arrayElement = [[NSMutableArray alloc] init];
     
+    subArry = [[NSMutableArray alloc] init];
+    
     NSLog(@"ksdvfv%@",modal.stringRx);
     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     
@@ -151,20 +153,31 @@
     if(![[_xmlDictionaryData objectForKey:USERSUB] isKindOfClass:[NSString class]])
     {
         if([[_xmlDictionaryData objectForKey:USERSUB] objectForKey:SUBACTIVETRADING])
+        {
+            [subArry addObject:SUBACTIVETRADING];
             [arrayElement addObject:@"Active Trading Partners"];
+        }
         
         if([[_xmlDictionaryData objectForKey:USERSUB] objectForKey:SUBFUTTRADSIG])
+        {
+            [subArry addObject:SUBFUTTRADSIG];
             [arrayElement addObject:@"Futures Trading Signals"];
-        
+        }
         if([[_xmlDictionaryData objectForKey:USERSUB] objectForKey:SUBOPTTRADSIG])
+        {
+            [subArry addObject:SUBOPTTRADSIG];
             [arrayElement addObject:@"Options Trading Signals"];
-        
+        }
         if([[_xmlDictionaryData objectForKey:USERSUB] objectForKey:SUBTHEGOLDOIL])
+        {
+            [subArry addObject:SUBTHEGOLDOIL];
             [arrayElement addObject:@"The Gold And Oil Guy"];
-        
+        }
         if([[_xmlDictionaryData objectForKey:USERSUB] objectForKey:SUBTHEMARTRNDFOR])
+        {
+            [subArry addObject:SUBTHEMARTRNDFOR];
             [arrayElement addObject:@"The Market Trend Forecast"];
-        
+        }
         [tableViewMem reloadData];
     }
     else
@@ -269,10 +282,18 @@
     
 	return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView
-heightForFooterInSection:(NSInteger)section 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section 
 {
     return 0;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SubDetailViewController *subDetailController = [[SubDetailViewController alloc] init];
+    subDetailController.dictDetail = [[_xmlDictionaryData objectForKey:USERSUB] objectForKey:[subArry objectAtIndex:indexPath.section]];
+    subDetailController.stringTitle = [arrayElement objectAtIndex:indexPath.section];
+    [self.navigationController pushViewController:subDetailController animated:YES];
+    [subDetailController release];
 }
 
 - (void)viewDidUnload
