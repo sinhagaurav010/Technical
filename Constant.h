@@ -13,11 +13,19 @@
 #define URLSUBDEC @"http://www.thetechnicaltraders.com/memberships/WebServices/subscription_updates.php?user=%@"
 #define URLPOSTS @"http://www.thetechnicaltraders.com/memberships/WebServices/subscription_post.php?post_id=%@&subscription_id=%@"
 
+NSInteger totalrem ;
+
+#define SUBID @"SUBID"
 //szabla
 
+#define SUBLEVEL @"sublevel"
+#define ALERTS @"Alerts"
+#define ALUPDA @"Alerts + All Updates"
+
+#define URLSUBFORTTT @"http://www.thetechnicaltraders.com/newsletters-mobile"
 #define SUBACTIVETRADING @"ActiveTradingPartners"
 #define SUBFUTTRADSIG @"FuturesTradingSignals"
-#define SUBOPTTRADSIG @"FuturesTradingSignals"
+#define SUBOPTTRADSIG @"OptionsTradingSignals"
 #define SUBTHEGOLDOIL @"TheGoldAndOilGuy"
 #define SUBTHEMARTRNDFOR @"TheMarketTrendForecast"
 
@@ -28,6 +36,10 @@
 
 #define USERSUB @"user-subscriptions"
 #define USERNAME @"username"
+
+#define POSTCAT @"post-category"
+#define BADCOUNT @"badgeCount"
+
 
 NSString *stringUser;
 

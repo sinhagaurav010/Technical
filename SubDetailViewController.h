@@ -12,8 +12,13 @@
 
 @interface SubDetailViewController : UIViewController
 {
-        IBOutlet UITableView *tableSub;
+    IBOutlet UITableView *tableSub;
+    NSString *stringSubID;
+    NSMutableArray *arraySub;
 }
+-(void)saveTheUsedPostID:(NSInteger)index;
+
+-(BOOL)isAlreadyRead:(NSInteger)index;
 @property(retain)NSMutableDictionary *dictDetail;
 @property(retain)NSString *stringTitle;
 @end

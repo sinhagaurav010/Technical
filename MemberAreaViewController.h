@@ -13,13 +13,24 @@
 #import "XMLReader.h"
 #import "SettingViewController.h"
 #import "SubDetailViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface MemberAreaViewController : UIViewController<ModalDelegate>
 {
     ModalController *modal;
     IBOutlet UITableView *tableViewMem;
     NSMutableArray *arrayElement;
+    NSMutableArray *arrayCount;
     NSMutableArray *subArry;
     NSDictionary *_xmlDictionaryData ;
+    NSTimer *timer;
+    
 }
+-(void)fetchData;
+
+-(NSMutableArray *)sortAccordingTo:(NSInteger)index;
+
+-(NSInteger)numberOfUnreadMsg:(NSInteger)index;
+
 @end

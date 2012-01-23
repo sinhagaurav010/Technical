@@ -30,11 +30,16 @@
 -(IBAction)logOut:(id)sender
 {
     [ModalController removeContentForKey:USERNAME];
-    LoginViewController *loginController = [[LoginViewController alloc] init];
-    [self.navigationController pushViewController:loginController animated:YES];
+//    [ModalController removeContentForKey:SUBLEVEL];
+    //    [ModalController removeContentForKey:@"Active Trading Partners"];
+    //    [ModalController removeContentForKey:@"Futures Trading Signals"];
+    //    [ModalController removeContentForKey:@"Options Trading Signals"];
+    //    [ModalController removeContentForKey:@"The Gold And Oil Guy"];
+    //    [ModalController removeContentForKey:@"The Market Trend Forecast"];
     
+    LoginViewController *loginController = [[LoginViewController alloc] init];
+    [self.navigationController pushViewController:loginController animated:YES];    
 }
-
 
 -(void)Done
 {
@@ -49,12 +54,15 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if(section == 0)
     return [arrayElment count];
+    else
+        return 1;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;              // Default is 1 if not implemented
 {
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,14 +74,21 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringCell];
     }
-    cell.textLabel.text = [arrayElment objectAtIndex:indexPath.row];
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
-    
-    if(checkedItem == indexPath.row)
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    if(indexPath.section == 0)
+    {
+        cell.textLabel.text = [arrayElment objectAtIndex:indexPath.row];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+        
+        if(checkedItem == indexPath.row)
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        else
+            cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     else
-        cell.accessoryType = UITableViewCellAccessoryNone;
-
+    {
+        cell.accessoryType = 1;
+        cell.textLabel.text = @"User Guide";
+    }
     //cell.accessoryType = 1;
     
 	return cell;
@@ -86,19 +101,31 @@ heightForFooterInSection:(NSInteger)section
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    checkedItem = indexPath.row;
-    [tableSetting reloadData];
-	// Recover the cell and key
-//	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-//	NSString *key = cell.textLabel.text;
-//	
-//	// Created an inverted value and store it
-//	BOOL isChecked = !([[self.stateDictionary objectForKey:key] boolValue]);
-//	NSNumber *checked = [NSNumber numberWithBool:isChecked];
-//	[self.stateDictionary setObject:checked forKey:key];
-//	
-//	// Update the cell accessory checkmark
-//	cell.accessoryType = isChecked ? UITableViewCellAccessoryCheckmark :  UITableViewCellAccessoryNone;
+    if(indexPath.section == 0)
+    {
+        checkedItem = indexPath.row;
+        [ModalController saveTheContent:[arrayElment objectAtIndex:indexPath.row] withKey:SUBLEVEL];
+        
+        [tableSetting reloadData];
+        [self Done];
+    }
+    else
+    {
+        UserGuideViewController *UserGuideController = [[UserGuideViewController alloc] init];
+        [self.navigationController pushViewController:UserGuideController animated:YES];
+        [UserGuideController release];
+    }
+    // Recover the cell and key
+    //	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    //	NSString *key = cell.textLabel.text;
+    //	
+    //	// Created an inverted value and store it
+    //	BOOL isChecked = !([[self.stateDictionary objectForKey:key] boolValue]);
+    //	NSNumber *checked = [NSNumber numberWithBool:isChecked];
+    //	[self.stateDictionary setObject:checked forKey:key];
+    //	
+    //	// Update the cell accessory checkmark
+    //	cell.accessoryType = isChecked ? UITableViewCellAccessoryCheckmark :  UITableViewCellAccessoryNone;
 }
 
 
@@ -108,8 +135,14 @@ heightForFooterInSection:(NSInteger)section
 - (void)viewDidLoad
 {
     [self.navigationItem setTitle:TITLESETTING];
-
+    
     tableSetting.backgroundView = nil;
+    
+    if([(NSString*)[ModalController getContforKey:SUBLEVEL] isEqualToString:ALERTS])
+        checkedItem = 0;
+    else
+        checkedItem = 1;
+    
     tableSetting.backgroundColor = [UIColor clearColor];
     
     arrayElment = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithObjects:@"Alerts",@"Alerts + All Updates", nil]];

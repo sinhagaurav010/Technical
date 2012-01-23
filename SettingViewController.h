@@ -10,6 +10,8 @@
 #import "ModalController.h"
 #import "Constant.h"
 #import "LoginViewController.h"
+#import "UserGuideViewController.h"
+
 @interface SettingViewController : UIViewController
 {
     NSMutableArray *arrayElment;

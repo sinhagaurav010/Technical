@@ -18,8 +18,8 @@
       NSMutableURLRequest *request = [NSMutableURLRequest 
                                     requestWithURL:[NSURL URLWithString:URL] 
                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                    timeoutInterval:100];  
-    
+                                    timeoutInterval:30];  
+        
     NSData *postData = [string dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
     

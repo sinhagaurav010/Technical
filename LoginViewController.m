@@ -13,7 +13,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self) 
+    {
         // Custom initialization
     }
     return self;
@@ -34,14 +35,12 @@
 
 - (void)viewDidLoad
 {
-    
     //txtfld = [[UITextField alloc]init];
     [super viewDidLoad];
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     // Do any additional setup after loading the view from its nib.
     //self.navigationController.navigationBarHidden=YES;
     [loginScalView setContentSize:CGSizeMake(0, 700)];
-    
 }
 
 - (void)viewDidUnload
@@ -56,6 +55,14 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma mark -subscribeToAlert-
+
+-(IBAction)subscribeToAlert:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLSUBFORTTT]];
+}
+
 #pragma mark - UITableView 
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section 
 //{
@@ -81,12 +88,13 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 { 
     NSString *stringCell = @"cell";
-	UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:stringCell];
+	
+    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:stringCell];
     if(!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringCell];
         
-        label1=[[UILabel alloc]initWithFrame:CGRectMake(5, 5, 120, 50)];
+        label1=[[UILabel alloc]initWithFrame:CGRectMake(5, 10, 120, 30)];
         label1.backgroundColor=[UIColor clearColor];
         label1.font=[UIFont boldSystemFontOfSize:20];
         [cell.contentView addSubview:label1];
@@ -95,8 +103,10 @@
     {
         label1.text=@"Username:";
         
-        fieldUser=[[UITextField alloc]initWithFrame:CGRectMake(130, 20, 170, 70)];
+        fieldUser=[[UITextField alloc]initWithFrame:CGRectMake(120, 10, 170, 31)];
         fieldUser.backgroundColor=[UIColor clearColor];
+        fieldUser.textAlignment = UITextAlignmentLeft;
+        fieldUser.clearButtonMode = UITextFieldViewModeAlways;
         fieldUser.delegate=self;
         [cell.contentView addSubview:fieldUser];
         
@@ -104,33 +114,36 @@
     if(indexPath.row==1)
     {
         label1.text=@"Password:";
-        fieldPass=[[UITextField alloc]initWithFrame:CGRectMake(130, 20, 170, 70)];
+        fieldPass=[[UITextField alloc]initWithFrame:CGRectMake(120, 10, 170, 31)];
         fieldPass.backgroundColor=[UIColor clearColor];
         fieldPass.delegate=self;
+        fieldPass.clearButtonMode = UITextFieldViewModeAlways;
         fieldPass.secureTextEntry = YES;
         [cell.contentView addSubview:fieldPass];
     }
 
 	return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView
-heightForFooterInSection:(NSInteger)section 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section 
 {
         return 0;
 }
 
+
 -(void)result
 {
     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+    
     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Info" 
                                                  message:@"Incorrect Username Or Password" 
                                                 delegate:nil 
                                        cancelButtonTitle:@"OK" 
                                        otherButtonTitles: nil];
     [alert show];
+    [alert release];
 
 }
-
 
 
 -(IBAction)clickToEnter:(id)sender
@@ -158,7 +171,6 @@ heightForFooterInSection:(NSInteger)section
 //                                   userInfo:nil
 //                                    repeats:NO];
     
-   
 }
 
 -(void)getdata
@@ -174,6 +186,7 @@ heightForFooterInSection:(NSInteger)section
     {
         MemberAreaViewController *memberController = [[MemberAreaViewController alloc] init];
         [ModalController saveTheContent:[fieldUser text] withKey:USERNAME];
+        [ModalController saveTheContent:@"Alerts + All Updates" withKey:SUBLEVEL];
         [self.navigationController pushViewController:memberController animated:YES];
         
     }
@@ -182,7 +195,6 @@ heightForFooterInSection:(NSInteger)section
         [ModalController showTheAlertWithMsg:@"Wrong Username or Password!" 
                                    withTitle:@"Error"
                                 inController:self];
-
     }
     //[self parseData:modal.dataXml];
 }

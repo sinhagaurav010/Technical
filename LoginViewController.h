@@ -27,4 +27,5 @@
     IBOutlet UIScrollView *loginScalView;
 }
 -(IBAction)clickToEnter:(id)sender;
+-(IBAction)subscribeToAlert:(id)sender;
 @end

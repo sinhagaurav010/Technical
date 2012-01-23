@@ -130,7 +130,6 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
     // Release any cached data, images, etc that aren't in use.
 }
 
@@ -139,11 +138,12 @@
 
 -(void)getdata
 {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
     arrayElement = [[NSMutableArray alloc] init];
     
     subArry = [[NSMutableArray alloc] init];
     
-    NSLog(@"ksdvfv%@",modal.stringRx);
     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     
     
@@ -178,27 +178,100 @@
             [subArry addObject:SUBTHEMARTRNDFOR];
             [arrayElement addObject:@"The Market Trend Forecast"];
         }
+        
+        arrayCount = [[NSMutableArray alloc] init];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = totalrem;
+        
         [tableViewMem reloadData];
     }
     else
-        [ModalController showTheAlertWithMsg:@"No Subscription Found" withTitle:@"Info" inController:self];
+    {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"No Subscription Found" 
+                                                     message:@"Please renew your subscription"
+                                                    delegate:self 
+                                           cancelButtonTitle:@"OK" 
+                                           otherButtonTitles: nil];
+        [alert show];
+        [alert release];
+    }
+    
+    
     
     //[self parseData:modal.dataXml];
 }
 
+
+
+#pragma mark -clickedButtonAtIndex-
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLSUBFORTTT]];
+    }
+    
+}
+#pragma mark -sortAccordingTo-
+
+
+-(NSMutableArray *)sortAccordingTo:(NSInteger)index
+{
+    NSMutableArray *arrayCh = [[NSMutableArray alloc] init];
+    NSArray *arraySort = [[[_xmlDictionaryData objectForKey:USERSUB] objectForKey:[subArry objectAtIndex:index]] objectForKey:POST];
+    if([[ModalController getContforKey:SUBLEVEL] isEqualToString:ALERTS])
+    {
+        for(int i=0;i<[arraySort count];i++)
+        {
+            if([[[arraySort objectAtIndex:i] objectForKey:POSTCAT] isEqualToString:ALERTS] || [[[arraySort objectAtIndex:i] objectForKey:POSTCAT] isEqualToString:@"alerts"])
+            {
+                [arrayCh addObject:[arraySort objectAtIndex:i]];
+            }
+        }
+        return arrayCh;
+    }
+    else
+        return [[[NSMutableArray alloc] initWithArray:arraySort] autorelease];
+}
+
+#pragma mark -numberOfUnreadMsg-
+
+-(NSInteger)numberOfUnreadMsg:(NSInteger)index
+{
+    NSMutableArray *arrayPostsID = [[NSMutableArray alloc]init];
+    arrayPostsID = [self sortAccordingTo:index];
+    
+    int count = [arrayPostsID count];
+    if([ModalController getContforKey:[arrayElement objectAtIndex:index]])
+    {        
+        
+        NSLog(@"°°°°°°°°°°°°°°°%@",arrayPostsID);
+        NSArray *arrayChecked = (NSArray *)[ModalController getContforKey:[arrayElement objectAtIndex:index]];
+        
+        for(int j=0;j<[arrayPostsID count];j++)
+        {
+            if([arrayChecked containsObject:[[arrayPostsID objectAtIndex:j] objectForKey:ID]])
+                count--;
+        }
+    }
+    totalrem += count;
+    //    [arrayCount addObject:[NSString stringWithFormat:@"%d",count]];
+    //    }
+    //    
+    
+    return count;
+}
 -(void)getError
 {
     //isInternetConnect = 1;
-    
-    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-    
-    
+    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];    
     [ModalController showTheAlertWithMsg:@"Error" 
                                withTitle:@"Error in Network"
                             inController:self];
 }
 
 #pragma mark - View lifecycle
+
 
 - (void)viewDidLoad
 {
@@ -232,18 +305,22 @@
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Loading...";
-    
-    modal = [[ModalController alloc] init];
-    modal.delegate = self;
-    [modal sendTheRequestWithPostString:nil withURLString:[NSString stringWithFormat:URLSUBDEC,[ModalController getContforKey:USERNAME]]];
+    [self fetchData];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)fetchData
+{
+    modal = [[ModalController alloc] init];
+    modal.delegate = self;
+    [modal sendTheRequestWithPostString:nil withURLString:[NSString stringWithFormat:URLSUBDEC,[ModalController getContforKey:USERNAME]]];
+}
 
--(void)setting{
-	
+
+-(void)setting
+{	
 	//[self.view setBackgroundColor:BACKGROUND_COLOR];
 	
 	SettingViewController *mySettingViewController = [[SettingViewController alloc]init];
@@ -254,7 +331,6 @@
 	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
 	[[self navigationController] pushViewController:mySettingViewController animated:NO];
 	[UIView commitAnimations];
-	
 }
 
 #define mark -TableView Code-
@@ -270,14 +346,34 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 { 
     NSString *stringCell = @"cell";
-	UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:stringCell];
-    
-    if(!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringCell];
-    }
+    UITableViewCell *cell ;
+    //	UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:stringCell];
+    //    
+    //    if(!cell)
+    //    {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringCell];
+    //    }
     cell.textLabel.text = [arrayElement objectAtIndex:indexPath.section];
+    
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+    
+    NSInteger unreadCount = [self numberOfUnreadMsg:indexPath.section];
+    //    
+    //    UIView *viewCount = [[UIView alloc] initWithFrame:CGRectMake(250, 12, 22, 20)];
+    //    viewCount.backgroundColor = [UIColor redColor];
+    //    
+    //    [cell addSubview:viewCount];
+    //    
+    UILabel *labelCount = [[UILabel alloc] initWithFrame:CGRectMake(250, 12, 22, 20)];
+    labelCount.backgroundColor = [UIColor redColor];
+    labelCount.textAlignment = UITextAlignmentCenter;
+    [labelCount.layer setCornerRadius:8.0f];
+    [labelCount.layer setMasksToBounds:YES];
+    labelCount.textColor = [UIColor whiteColor];
+    labelCount.text = [NSString stringWithFormat:@"%d",unreadCount];
+    [cell addSubview:labelCount];
+    [labelCount release];
+    
     cell.accessoryType = 1;
     
 	return cell;
@@ -296,6 +392,30 @@
     [subDetailController release];
 }
 
+-(void)againFetch
+{
+    totalrem = 0;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [self fetchData];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(againFetch) userInfo:nil repeats:YES];
+}
+- (void)viewDidDisappear:(BOOL)animated
+{
+    if([timer isValid])
+        [timer invalidate];
+    timer = nil;
+}
+#pragma mark -viewWillAppear-
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+    totalrem = 0;
+    [tableViewMem reloadData];
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];

@@ -11,6 +11,9 @@
 #import "Constant.h"
 #import "MemberAreaViewController.h"
 #import "ModalController.h"
+
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     UINavigationController *navigation;
