@@ -400,6 +400,7 @@
 }
 - (void)viewDidAppear:(BOOL)animated
 {
+//    [self againFetch];
     timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(againFetch) userInfo:nil repeats:YES];
 }
 - (void)viewDidDisappear:(BOOL)animated
