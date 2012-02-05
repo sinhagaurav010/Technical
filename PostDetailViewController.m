@@ -35,6 +35,7 @@
 
 - (void)viewDidLoad
 {
+    isFirst = 1;
 //    webSub.backgroundColor   = [UIColor clearColor];
 //    webSub.opaque   = 0;
     
@@ -78,12 +79,23 @@
     // Do any additional setup after loading the view from its nib.
 }
      
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+    if(isFirst == 1)
+        return YES;
+    else
+    {
+        [[UIApplication sharedApplication] openURL:[request URL]];
+        
+        return NO;
+    }
 }
 
-
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    isFirst = 0;
+    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+}
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];

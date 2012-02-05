@@ -346,8 +346,7 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 { 
     NSString *stringCell = @"cell";
-    UITableViewCell *cell ;
-    //	UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:stringCell];
+	UITableViewCell *cell;// = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:stringCell];
     //    
     //    if(!cell)
     //    {
@@ -364,16 +363,18 @@
     //    
     //    [cell addSubview:viewCount];
     //    
-    UILabel *labelCount = [[UILabel alloc] initWithFrame:CGRectMake(250, 12, 22, 20)];
-    labelCount.backgroundColor = [UIColor redColor];
-    labelCount.textAlignment = UITextAlignmentCenter;
-    [labelCount.layer setCornerRadius:8.0f];
-    [labelCount.layer setMasksToBounds:YES];
-    labelCount.textColor = [UIColor whiteColor];
-    labelCount.text = [NSString stringWithFormat:@"%d",unreadCount];
-    [cell addSubview:labelCount];
-    [labelCount release];
-    
+    if(unreadCount!=0)
+    {
+        UILabel *labelCount = [[UILabel alloc] initWithFrame:CGRectMake(250, 12, 22, 20)];
+        labelCount.backgroundColor = [UIColor redColor];
+        labelCount.textAlignment = UITextAlignmentCenter;
+        [labelCount.layer setCornerRadius:8.0f];
+        [labelCount.layer setMasksToBounds:YES];
+        labelCount.textColor = [UIColor whiteColor];
+        labelCount.text = [NSString stringWithFormat:@"%d",unreadCount];
+        [cell addSubview:labelCount];
+        [labelCount release];
+    }
     cell.accessoryType = 1;
     
 	return cell;

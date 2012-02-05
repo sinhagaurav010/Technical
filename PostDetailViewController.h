@@ -14,6 +14,7 @@
 
 @interface PostDetailViewController : UIViewController<ModalDelegate,UIWebViewDelegate>
 {
+    BOOL isFirst;
     NSMutableData *receivedData;
     IBOutlet UILabel *lableDate;
     IBOutlet UILabel *lableName;

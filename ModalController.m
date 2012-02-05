@@ -13,6 +13,7 @@
 
 @synthesize stringRx,dataXml,delegate;
 
+
 -(void)sendTheRequestWithPostString:(NSString*)string withURLString:(NSString*)URL
 {
       NSMutableURLRequest *request = [NSMutableURLRequest 
